@@ -1,7 +1,7 @@
 {
   "name": "jackson-pollock-simulator",
   "private": true,
-  "version": "1.1.0",
+  "version": "1.1.2",
   "main": "./dist/vite-ts-lib-starter.cjs",
   "module": "./dist/vite-ts-lib-starter.mjs",
   "exports": {

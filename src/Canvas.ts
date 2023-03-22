@@ -10,7 +10,12 @@ class Canvas {
     if (this.canvas) {
       this.canvas.addEventListener("dblclick", this.doubleClickHandler);
       this.canvas.addEventListener("click", this.clickHandler);
-      this.canvas.addEventListener("mousemove", this.moveHandler);
+      if (utils.isMobile()) {
+        this.canvas.addEventListener("touchmove", this.touchMoveHandler);
+      } else {
+        this.canvas.addEventListener("mousemove", this.mouseMoveHandler);
+      }
+
       window.addEventListener("resize", this.resizeHandler);
       this.init();
     }
@@ -86,7 +91,15 @@ class Canvas {
     ctx.fill();
   };
 
-  moveHandler = ({ offsetX: x, offsetY: y }: MouseEvent) => {
+  touchMoveHandler = ({ touches }: TouchEvent) => {
+    this.moveHandler(touches[0].pageX, touches[0].pageY);
+  };
+
+  mouseMoveHandler = ({ offsetX: x, offsetY: y }: MouseEvent) => {
+    this.moveHandler(x, y);
+  };
+
+  moveHandler = (x: number, y: number) => {
     if (this.lastCoords.x === 0 && this.lastCoords.y === 0) {
       this.lastCoords = { x, y };
     }
