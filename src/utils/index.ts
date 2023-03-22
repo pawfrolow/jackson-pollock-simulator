@@ -39,5 +39,3 @@ export const getLineWidth = (speed: number) => {
 
     return 1;
 }
-
-export const getCanvas = () => document.querySelector('canvas');
